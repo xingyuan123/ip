@@ -2,20 +2,20 @@ import java.util.Scanner;
 
 public class Duke {
     public static void main(String[] args) {
-        TaskList l = new TaskList();
+        TaskList list = new TaskList();
         greeting();
         String line;
         Scanner in = new Scanner(System.in);
         line = in.nextLine();
-        while(!line.equals("bye")){
-            if(line.equals("list")){
-                l.printTaskList();
-            }else if(line.startsWith("done")){
-                l.markIsDone(Integer.parseInt(line.substring(5)));
-            }else{
+        while (!line.equals("bye")) {
+            if (line.equals("list")) {
+                list.printTaskList();
+            } else if(line.startsWith("done")) {
+                list.markIsDone(Integer.parseInt(line.substring(5)));
+            } else {
                 echo(line);
                 Task task = new Task(line);
-                l.addTaskList(task);
+                list.addTaskList(task);
             }
             in = new Scanner(System.in);
             line = in.nextLine();
@@ -23,7 +23,7 @@ public class Duke {
         bye();
     }
 
-    public static void greeting(){
+    public static void greeting() {
         String logo = "      ____        _        \n"
                 + "     |  _ \\ _   _| | _____ \n"
                 + "     | | | | | | | |/ / _ \\\n"
@@ -37,13 +37,13 @@ public class Duke {
 
     }
 
-    public static void echo(String line){
+    public static void echo(String line) {
         System.out.println("    _____________________________________________________________");
         System.out.println("     added:  "+line);
         System.out.println("    _____________________________________________________________");
     }
 
-    public static void bye(){
+    public static void bye() {
         System.out.println("    Bye.Hope to see you again soon!");
         System.out.println("    _____________________________________________________________");
     }
