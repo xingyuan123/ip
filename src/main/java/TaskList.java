@@ -2,7 +2,6 @@ public class TaskList {
     private int taskListCount = 0;
     private Task[] taskList = new Task[100];
 
-
     public void addTaskList(Task listItem){
         taskList[taskListCount] = listItem;
         taskListCount += 1;
@@ -11,7 +10,8 @@ public class TaskList {
     public void printTaskList(){
             System.out.println("    _____________________________________________________________");
             for (int i = 1 ; i < taskListCount+1 ; i++) {
-                System.out.println(i+"."+taskList[i-1].getStatusIcon() +taskList[i-1].getDescription());
+                System.out.print("    " + i + ".");
+                taskList[i-1].printTask();
             }
             System.out.println("    _____________________________________________________________");
     }
@@ -23,4 +23,10 @@ public class TaskList {
         System.out.println("    [X] " + taskList[taskNumber-1].getDescription());
         System.out.println("    _____________________________________________________________");
     }
+
+    public int getTaskListCount(){
+        return taskListCount;
+    }
+
+
 }
