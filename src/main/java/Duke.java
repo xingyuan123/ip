@@ -3,8 +3,8 @@ import java.util.Scanner;
 public class Duke {
     public static void main(String[] args) {
         TaskList list = new TaskList();
-        char taskLetter;
-        greeting();
+        char taskLetter = 0;
+        printGreeting();
         String line;
         Scanner in = new Scanner(System.in);
         line = in.nextLine();
@@ -14,33 +14,22 @@ public class Duke {
             } else if(line.startsWith("done")) {
                 list.markIsDone(Integer.parseInt(line.substring(5)));
             } else if(line.startsWith("todo")) {
-                Task task = new ToDo(line.substring(5));
-                taskLetter = Character.toUpperCase(line.charAt(0));
-                list.addTaskList(task);
-                echo(task ,list);
+                createToDoTask(line , taskLetter , list);
             } else if(line.startsWith("deadline")){
-                String[] deadline = line.split("/by");
-                Task task = new Deadline(deadline[0].substring(9) , deadline[1]);
-                taskLetter = Character.toUpperCase(line.charAt(0));
-                list.addTaskList(task);
-                echo(task ,list);
+                createDeadlineTask(line , taskLetter ,list);
             } else if(line.startsWith("event")) {
-                String[] event = line.split("/at ");
-                Task task = new Event(event[0].substring(6) , event[1]);
-                taskLetter = Character.toUpperCase(line.charAt(0));
-                list.addTaskList(task);
-                echo(task ,list);
+                createEventTask(line , taskLetter ,list);
             } else {
                 System.out.println("    Ps didn't understand command , please refer to the command guide");
-                commandGuide();
+                printCommandGuide();
             }
             in = new Scanner(System.in);
             line = in.nextLine();
         }
-        bye();
+        printBye();
     }
 
-    public static void greeting() {
+    public static void printGreeting() {
         String logo = "      ____        _        \n"
                 + "     |  _ \\ _   _| | _____ \n"
                 + "     | | | | | | | |/ / _ \\\n"
@@ -49,10 +38,12 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
         System.out.println("    _____________________________________________________________");
         System.out.println("    Hello! I'm Duke");
-        commandGuide();
+        printCommandGuide();
     }
 
-    public static void commandGuide(){
+
+    public static void printCommandGuide(){
+        //prints list of commands
         System.out.println("    Command Guide");
         System.out.println("    use \"todo\" (with a space) to add a task without any date or time attached to it");
         System.out.println("    use \"deadline\" (with a space) and \"/by\" to add a task to be done before a certain date");
@@ -64,7 +55,57 @@ public class Duke {
         System.out.println("    _____________________________________________________________");
     }
 
-    public static void echo(Task task , TaskList list ) {
+    /**
+     *Creates a new ToDo object of Task class
+     *adds ToDo Object to list of tasks
+     *prints a message to tell the user ToDo object has been added to TaskList
+     *
+     * @param line the input entered by user
+     * @param taskLetter the letter denoting the type of object
+     * @param list list of tasks
+     * */
+    public static void createToDoTask(String line , char taskLetter , TaskList list){
+        Task task = new ToDo(line.substring(5));
+        taskLetter = Character.toUpperCase(line.charAt(0));
+        list.addTaskList(task);
+        printEcho(task ,list);
+    }
+
+    /**
+     *Creates a new Deadline object of Task class
+     *adds Deadline Object to list of tasks
+     *prints a message to tell the user Deadline object has been added to TaskList
+     *
+     * @param line the input entered by user
+     * @param taskLetter the letter denoting the type of object
+     * @param list list of tasks
+     * */
+    public static void createDeadlineTask(String line , char taskLetter , TaskList list){
+        String[] deadline = line.split("/by");
+        Task task = new Deadline(deadline[0].substring(9) , deadline[1]);
+        taskLetter = Character.toUpperCase(line.charAt(0));
+        list.addTaskList(task);
+        printEcho(task ,list);
+    }
+
+    /**
+     *Creates a new Event object of Task class
+     *adds Event Object to list of tasks
+     *prints a message to tell the user Event object has been added to TaskList
+     *
+     * @param line the input entered by user
+     * @param taskLetter the letter denoting the type of object
+     * @param list list of tasks
+     * */
+    public static void createEventTask(String line , char taskLetter , TaskList list){
+        String[] event = line.split("/at ");
+        Task task = new Event(event[0].substring(6) , event[1]);
+        taskLetter = Character.toUpperCase(line.charAt(0));
+        list.addTaskList(task);
+        printEcho(task ,list);
+    }
+
+    public static void printEcho(Task task , TaskList list ) {
         System.out.println("    _____________________________________________________________");
         System.out.println("    Got it. I've added this task:");
         System.out.print("      ");
@@ -73,8 +114,9 @@ public class Duke {
         System.out.println("    _____________________________________________________________");
     }
 
-    public static void bye() {
+    public static void printBye() {
         System.out.println("    Bye.Hope to see you again soon!");
         System.out.println("    _____________________________________________________________");
     }
+
 }

@@ -4,7 +4,7 @@ public class ToDo extends Task {
     }
 
     @Override
-    public void printTask(){
-        System.out.println("[T]" + super.getStatusIcon()  + super.getDescription());
+    public void printTask() {
+        System.out.println("[T]" + super.getStatusIcon()  + super.getDescription() );
     }
 }

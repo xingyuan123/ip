@@ -7,8 +7,8 @@ public class Event extends Task{
     }
 
     @Override
-    public void printTask(){
-        System.out.println("[E]" + super.getStatusIcon()  + super.getDescription() + "(at: " + at +")");
+    public void printTask() {
+        System.out.println("[E]" + super.getStatusIcon()  + super.getDescription() + "(at: " + at + ")" );
     }
 
 }

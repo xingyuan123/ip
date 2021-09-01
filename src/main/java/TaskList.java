@@ -2,14 +2,14 @@ public class TaskList {
     private int taskListCount = 0;
     private Task[] taskList = new Task[100];
 
-    public void addTaskList(Task listItem){
+    public void addTaskList(Task listItem) {
         taskList[taskListCount] = listItem;
         taskListCount += 1;
     }
 
-    public void printTaskList(){
+    public void printTaskList() {
             System.out.println("    _____________________________________________________________");
-            for (int i = 1 ; i < taskListCount+1 ; i++) {
+            for (int i = 1 ; i < taskListCount + 1 ; i++) {
                 System.out.print("    " + i + ".");
                 taskList[i-1].printTask();
             }
@@ -20,11 +20,12 @@ public class TaskList {
         taskList[taskNumber-1].setIsDone();
         System.out.println("    _____________________________________________________________");
         System.out.println("    Nice! I've marked this task as done:");
-        System.out.println("    [X] " + taskList[taskNumber-1].getDescription());
+        System.out.print("    ");
+        taskList[taskNumber-1].printTask();
         System.out.println("    _____________________________________________________________");
     }
 
-    public int getTaskListCount(){
+    public int getTaskListCount() {
         return taskListCount;
     }
 

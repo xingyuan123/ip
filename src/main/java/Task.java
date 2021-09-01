@@ -12,7 +12,7 @@ public class Task {
     }
 
     public void setIsDone() {
-         isDone = true;
+        isDone = true;
     }
 
     public void printTask(){
@@ -20,7 +20,8 @@ public class Task {
     }
 
     public String getStatusIcon() {
-        return (isDone ? "[X]" : "[ ]"); // mark done task with X
+        // mark done task with X if done
+        return (isDone ? "[X]" : "[ ]");
     }
 
 
