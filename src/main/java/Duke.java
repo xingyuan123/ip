@@ -18,13 +18,16 @@ public class Duke {
                 list.printTaskList();
             } else if (line.startsWith("done")) {
                 try {
-                    list.markIsDone(Integer.parseInt(line.substring(5)));
+                    list.markIsDone(Integer.parseInt(line.substring(5).trim()));
                 } catch (NullPointerException e) {
                     System.out.println("    task number is out of bounds in list");
                     System.out.println("    Please refer to the command guide");
                     printCommandGuide();
+                } catch (NumberFormatException e){
+                    System.out.println("    task number is wrong format");
+                    System.out.println("    Please refer to the command guide");
+                    printCommandGuide();
                 }
-
             } else if (line.startsWith("todo ")) {
                 createToDoTask(line , taskLetter , list);
             } else if (line.startsWith("deadline ")) {
