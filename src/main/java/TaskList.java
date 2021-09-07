@@ -20,7 +20,7 @@ public class TaskList {
     }
 
     public void markIsDone(int taskNumber) {
-        if (taskNumber == 0 || taskNumber > taskListCount){
+        if (taskNumber <= 0 || taskNumber > taskListCount){
             throw new NullPointerException();
         } else {
             taskList[taskNumber-1].setDone();
