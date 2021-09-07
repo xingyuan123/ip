@@ -11,7 +11,7 @@ public class Task {
         return description;
     }
 
-    public void setIsDone() {
+    public void setDone() {
         isDone = true;
     }
 
@@ -23,7 +23,4 @@ public class Task {
         // mark done task with X if done
         return (isDone ? "[X]" : "[ ]");
     }
-
-
-
 }
