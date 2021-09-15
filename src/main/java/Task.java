@@ -23,4 +23,14 @@ public class Task {
         // mark done task with X if done
         return (isDone ? "[X]" : "[ ]");
     }
+
+    public String getStatusValue() {
+        return (isDone ? "1" : "0");
+    }
+
+
+    public String getTextString() {
+        return (description + "\n");
+    }
+
 }

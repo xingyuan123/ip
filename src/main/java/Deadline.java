@@ -10,4 +10,9 @@ public class Deadline extends Task{
     public void printTask() {
         System.out.println("[D]" + super.getStatusIcon() + super.getDescription() + "(by:" + by + ")");
     }
+
+    @Override
+    public String getTextString() {
+        return ("D" + "|" + super.getStatusValue() + "|" + super.getDescription() + "|" + by +"\n");
+    }
 }

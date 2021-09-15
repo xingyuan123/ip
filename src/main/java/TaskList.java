@@ -35,4 +35,10 @@ public class TaskList {
     public int getTaskListCount() {
         return taskListCount;
     }
+
+    public String textString(int index) {
+        String textLine = taskList[index].getTextString();
+        return textLine;
+    }
+
 }
