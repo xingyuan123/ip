@@ -69,6 +69,7 @@ public class Duke {
             } else if (line.startsWith("delete")) {
                 try {
                     list.deleteTask(Integer.parseInt(line.substring(7).trim()));
+                    writeDukeTextFile(list);
                 } catch (NullPointerException e) {
                     System.out.println("    task number is out of bounds in list");
                     System.out.println("    Please refer to the command guide");
