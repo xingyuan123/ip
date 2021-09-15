@@ -54,6 +54,18 @@ public class Duke {
                     System.out.println("    Please refer to the command guide");
                     printCommandGuide();
                 }
+            } else if (line.startsWith("delete")) {
+                try {
+                    list.deleteTask(Integer.parseInt(line.substring(7).trim()));
+                } catch (NullPointerException e) {
+                    System.out.println("    task number is out of bounds in list");
+                    System.out.println("    Please refer to the command guide");
+                    printCommandGuide();
+                } catch (NumberFormatException e){
+                    System.out.println("    task number is wrong format");
+                    System.out.println("    Please refer to the command guide");
+                    printCommandGuide();
+                }
             } else {
                 System.out.println("    Invalid command");
                 System.out.println("    Please refer to the command guide");
@@ -64,6 +76,8 @@ public class Duke {
         }
         printBye();
     }
+
+
 
     public static void printGreeting() {
         String logo = "      ____        _        \n"
@@ -87,6 +101,7 @@ public class Duke {
         System.out.println("    use \"list\" to show task list");
         System.out.println("    use \"done\" (with a space) followed by task number to mark a task as done");
         System.out.println("    use \"bye\" to exit the chat bot");
+        System.out.println("    use \"delete\" followed by the taskNumber in the last to delete a task");
         System.out.println("    What can I do for you?");
         System.out.println(LINE_SEPARATOR);
     }
@@ -102,11 +117,11 @@ public class Duke {
      * */
     public static void createToDoTask(String line , char taskLetter , TaskList list){
         if (line.substring(TODO_INDEX).trim().isEmpty()){
-            System.out.println("    Todo task cannot be whitespaces or emptyde");
+            System.out.println("    Todo task cannot be whitespaces or empty");
             printCommandGuide();
         } else {
             Task task = new ToDo(line.substring(TODO_INDEX));
-            taskLetter = Character.toUpperCase(line.charAt(0));
+            //taskLetter = Character.toUpperCase(line.charAt(0));
             list.addTaskList(task);
             printEcho(task ,list);
         }
@@ -127,7 +142,7 @@ public class Duke {
             throw new ArrayIndexOutOfBoundsException();
         } else if ( deadline[0].substring(DEADLINE_INDEX).trim().isEmpty()) {
             throw new DeadlineEmptyException();
-        } else if ( deadline[1].substring(0).trim().isEmpty()) {
+        } else if ( deadline[1].trim().isEmpty()) {
             throw new DeadlineEmptyException();
         } else {
             Task task = new Deadline(deadline[0].substring(DEADLINE_INDEX) , deadline[1]);
@@ -153,7 +168,7 @@ public class Duke {
             throw new ArrayIndexOutOfBoundsException();
         } else if (event[0].substring(EVENT_INDEX).trim().isEmpty()) {
             throw new EventEmptyException();
-        } else if (event[1].substring(0).trim().isEmpty()) {
+        } else if (event[1].trim().isEmpty()) {
             throw new EventEmptyException();
         } else {
             Task task = new Event(event[0].substring(EVENT_INDEX) , event[1]);
