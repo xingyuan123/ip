@@ -10,4 +10,10 @@ public class Event extends Task{
     public void printTask() {
         System.out.println("[E]" + super.getStatusIcon()  + super.getDescription() + "(at: " + at + ")" );
     }
+
+    @Override
+    public String getTextString() {
+        return ("E" + "|" + super.getStatusValue() + "|" + super.getDescription() + "|" + at + "\n");
+    }
+
 }

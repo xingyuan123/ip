@@ -1,3 +1,8 @@
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.io.File;
+import java.io.IOException;
+import java.io.FileWriter;
 import java.util.Scanner;
 
 public class Duke {
@@ -9,6 +14,9 @@ public class Duke {
     public static void main(String[] args) {
         TaskList list = new TaskList();
         char taskLetter = 0;
+        File dukeTextFile = null;
+        SetupFile(list);
+
         printGreeting();
         String line;
         Scanner in = new Scanner(System.in);
@@ -19,6 +27,7 @@ public class Duke {
             } else if (line.startsWith("done")) {
                 try {
                     list.markIsDone(Integer.parseInt(line.substring(5).trim()));
+                    writeDukeTextFile(list);
                 } catch (NullPointerException e) {
                     System.out.println("    task number is out of bounds in list");
                     System.out.println("    Please refer to the command guide");
@@ -30,9 +39,11 @@ public class Duke {
                 }
             } else if (line.startsWith("todo ")) {
                 createToDoTask(line , taskLetter , list);
+                writeDukeTextFile(list);
             } else if (line.startsWith("deadline ")) {
                 try {
                     createDeadlineTask(line , taskLetter ,list);
+                    writeDukeTextFile(list);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("    please input /by date");
                     System.out.println("    Please refer to the command guide");
@@ -45,6 +56,7 @@ public class Duke {
             } else if (line.startsWith("event")) {
                 try {
                     createEventTask(line , taskLetter ,list);
+                    writeDukeTextFile(list);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("    please input /at date");
                     System.out.println("    Please refer to the command guide");
@@ -75,6 +87,67 @@ public class Duke {
             line = in.nextLine();
         }
         printBye();
+    }
+
+
+    public static void SetupFile(TaskList list) {
+            File dukeTextFile = new  File("Duke.txt");
+            if(!dukeTextFile.exists()){
+                try {
+                    dukeTextFile.createNewFile();
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+            } else {
+                loadDukeTextFile(dukeTextFile ,list );
+            }
+    }
+
+    public static void loadDukeTextFile(File dukeTextFile ,TaskList list) {
+        try {
+            Scanner dukeTextScanner = new Scanner(dukeTextFile);
+            while (dukeTextScanner.hasNextLine()) {
+                String dukeTextLine = dukeTextScanner.nextLine();
+                String taskLetter = dukeTextLine.substring(0,1);
+                if (taskLetter.equals("T")) { //ToDo
+                    String[] dukeLineSplit = dukeTextLine.split("\\|" ,3);
+                    String todoDescription = dukeLineSplit[2];
+                    Task task = new ToDo(todoDescription);
+                    list.addTaskList(task);
+                } else if (taskLetter.equals("D")) {//Deadline
+                    String[] dukeLineSplit = dukeTextLine.split("\\|" ,4);
+                    String deadlineDescription = dukeLineSplit[2].trim();
+                    String deadlineBy = dukeLineSplit[3].trim();
+                    Task task = new Deadline(deadlineDescription, deadlineBy);
+                    list.addTaskList(task);
+                } else {
+                    String[] dukeLineSplit = dukeTextLine.split("\\|" ,4);
+                    String eventDescription = dukeLineSplit[2].trim();
+                    String eventAt = dukeLineSplit[3].trim();
+                    Task task = new Event(eventDescription, eventAt);
+                    list.addTaskList(task);
+                }
+            }
+            writeDukeTextFile(list);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void writeDukeTextFile(TaskList list) {
+        File dukeTextFile = new  File("Duke.txt");
+        try {
+            FileWriter dukeTextWriter = new FileWriter(dukeTextFile);
+            int lineNumber = list.getTaskListCount();
+            for (int i = 0 ; i < lineNumber ; i++) {
+                dukeTextWriter.write(list.textString(i));
+            }
+            dukeTextWriter.close();
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
+
     }
 
 

@@ -7,4 +7,10 @@ public class ToDo extends Task {
     public void printTask() {
         System.out.println("[T]" + super.getStatusIcon()  + super.getDescription() );
     }
+
+    @Override
+    public String getTextString() {
+        return("T" + "|" + super.getStatusValue()  + "|" + super.getDescription() + "\n");
+    }
+
 }
