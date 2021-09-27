@@ -15,19 +15,17 @@ public class Task {
         isDone = true;
     }
 
-    public void printTask(){
-         System.out.println(description);
+    public void printTask() {
+        System.out.println(description);
     }
 
     public String getStatusIcon() {
-        // mark done task with X if done
         return (isDone ? "[X]" : "[ ]");
     }
 
     public String getStatusValue() {
         return (isDone ? "1" : "0");
     }
-
 
     public String getTextString() {
         return (description + "\n");
