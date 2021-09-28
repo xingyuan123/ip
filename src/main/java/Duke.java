@@ -1,6 +1,12 @@
 import java.util.Scanner;
 
 public class Duke {
+
+    /**
+     * Main function to run Duke chat-bot
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         TaskList list = new TaskList();
         Storage.SetupFile(list);
