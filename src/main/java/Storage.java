@@ -4,6 +4,13 @@ import java.io.FileWriter;
 import java.util.Scanner;
 
 public class Storage {
+
+    /**
+     * This method sets up the duke text file.It first tries to find if the exists.
+     * If the text file exists, it will call the method loadDukeTextFile. If not it will create a new duke text file.
+     *
+     * @param list the list of tasks in TaskList
+     */
     public static void SetupFile(TaskList list) {
         File dukeTextFile = new File("Duke.txt");
         if (!dukeTextFile.exists()) {
@@ -17,6 +24,12 @@ public class Storage {
         }
     }
 
+    /**
+     * This method loads the existing duke text file and adds all the contents into the current list in taskList.
+     *
+     * @param dukeTextFile the text file containing the list of tasks
+     * @param list         the list of tasks in TaskList
+     */
     public static void loadDukeTextFile(File dukeTextFile, TaskList list) {
         try {
             Scanner dukeTextScanner = new Scanner(dukeTextFile);
@@ -48,6 +61,11 @@ public class Storage {
         }
     }
 
+    /**
+     * This method rewrites to the duke text file the entire list in taskList.
+     *
+     * @param list the list of tasks in TaskList
+     */
     public static void writeDukeTextFile(TaskList list) {
         File dukeTextFile = new File("Duke.txt");
         try {
