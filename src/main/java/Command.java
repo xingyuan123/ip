@@ -31,6 +31,10 @@ public class Command {
             Ui.printWrongFormat();
             Ui.printReferralMessage();
             Ui.printCommandGuide();
+        } catch (IndexOutOfBoundsException e) {
+            Ui.printOutOfBounds();
+            Ui.printReferralMessage();
+            Ui.printCommandGuide();
         }
     }
 

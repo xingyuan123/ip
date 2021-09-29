@@ -33,8 +33,8 @@ public class TaskList {
      * @throws NullPointerException if the taskNumber is not in range of the list
      */
     public void markIsDone(int taskNumber) {
-        boolean taskInRange = taskNumber <= 0 || taskNumber > taskListCount;
-        if (!taskInRange) {
+        boolean taskInRange = (taskNumber <= 0 || taskNumber > taskListCount);
+        if (taskInRange == true) {
             throw new NullPointerException();
         } else {
             taskList.get(taskNumber - 1).setDone();
