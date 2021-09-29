@@ -148,6 +148,10 @@ public class Command {
             Ui.printInputEmpty(InputType);
             Ui.printReferralMessage();
             Ui.printCommandGuide();
+        } catch (StringIndexOutOfBoundsException e) {
+            Ui.printInputEmpty(InputType);
+            Ui.printReferralMessage();
+            Ui.printCommandGuide();
         }
     }
 
