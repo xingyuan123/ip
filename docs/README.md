@@ -2,7 +2,7 @@
 
 ## Usage
 
-###Starting the Duke chat-bot
+### Starting the Duke chat-bot
 Enter the following command into the terminal to start the chat-bot
 Make sure the ip.jar file is in the current directory in the terminal
 ```
