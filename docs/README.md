@@ -28,7 +28,7 @@ arguments:
 Example of usage:
 `todo <taskDescription> /by <taskDeadline>`
 
-### `event` - adding a new deadline task
+### `event` - adding a new event task
 adds a new event task to the current task list and to the duke text file.
 
 arguments:
