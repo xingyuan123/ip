@@ -2,6 +2,9 @@ public class Command {
     private static final int TODO_INDEX = 5;
     private static final int DEADLINE_INDEX = 9;
     private static final int EVENT_INDEX = 6;
+    private static final int DELETE_INDEX = 7;
+    private static final int DONE_INDEX = 5;
+    private static final int FIND_INDEX = 5;
 
     /**
      * This method calls the printTaskList method to print all current tasks in the TaskList.
@@ -21,7 +24,7 @@ public class Command {
      */
     public static void handleDoneCommand(TaskList list, String line) {
         try {
-            list.markIsDone(Integer.parseInt(line.substring(5).trim()));
+            list.markIsDone(Integer.parseInt(line.substring(DONE_INDEX).trim()));
             Storage.writeDukeTextFile(list);
         } catch (NullPointerException e) {
             Ui.printOutOfBounds();
@@ -113,7 +116,7 @@ public class Command {
     public static void handleDeleteCommand(TaskList list, String line) {
         String InputType = "Delete";
         try {
-            list.deleteTask(Integer.parseInt(line.substring(7).trim()));
+            list.deleteTask(Integer.parseInt(line.substring(DELETE_INDEX).trim()));
             Storage.writeDukeTextFile(list);
         } catch (NullPointerException e) {
             Ui.printOutOfBounds();
@@ -139,7 +142,7 @@ public class Command {
     public static void handleFindCommand(TaskList list, String line) {
         String InputType = "Find";
         try {
-            list.findTask(line.substring(5).trim());
+            list.findTask(line.substring(FIND_INDEX).trim());
         } catch (NullPointerException e) {
             Ui.printOutOfBounds();
             Ui.printReferralMessage();
