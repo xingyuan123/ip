@@ -39,19 +39,22 @@ public class Storage {
                 if (taskLetter.equals("T")) {
                     String[] dukeLineSplit = dukeTextLine.split("\\|", 3);
                     String todoDescription = dukeLineSplit[2];
-                    Task task = new ToDo(todoDescription);
+                    String todoIsDone = dukeLineSplit[1];
+                    Task task = new ToDo(todoDescription, todoIsDone);
                     list.addTaskList(task);
                 } else if (taskLetter.equals("D")) {//Deadline
                     String[] dukeLineSplit = dukeTextLine.split("\\|", 4);
                     String deadlineDescription = dukeLineSplit[2].trim();
+                    String deadlineIsDone = dukeLineSplit[1];
                     String deadlineBy = dukeLineSplit[3].trim();
-                    Task task = new Deadline(deadlineDescription, deadlineBy);
+                    Task task = new Deadline(deadlineDescription, deadlineBy, deadlineIsDone);
                     list.addTaskList(task);
                 } else {
                     String[] dukeLineSplit = dukeTextLine.split("\\|", 4);
                     String eventDescription = dukeLineSplit[2].trim();
                     String eventAt = dukeLineSplit[3].trim();
-                    Task task = new Event(eventDescription, eventAt);
+                    String eventIsDone = dukeLineSplit[1];
+                    Task task = new Event(eventDescription, eventAt, eventIsDone);
                     list.addTaskList(task);
                 }
             }
