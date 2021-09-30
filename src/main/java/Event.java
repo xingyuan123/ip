@@ -1,4 +1,4 @@
-public class Event extends Task{
+public class Event extends Task {
     protected String at;
 
     public Event(String description, String at) {
@@ -8,7 +8,7 @@ public class Event extends Task{
 
     @Override
     public void printTask() {
-        System.out.println("[E]" + super.getStatusIcon()  + super.getDescription() + "(at: " + at + ")" );
+        System.out.println("[E]" + super.getStatusIcon() + super.getDescription() + "(at: " + at + ")");
     }
 
     @Override

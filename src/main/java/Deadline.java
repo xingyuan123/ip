@@ -13,6 +13,6 @@ public class Deadline extends Task {
 
     @Override
     public String getTextString() {
-        return ("D" + "|" + super.getStatusValue() + "|" + super.getDescription() + "|" + by +"\n");
+        return ("D" + "|" + super.getStatusValue() + "|" + super.getDescription() + "|" + by + "\n");
     }
 }
